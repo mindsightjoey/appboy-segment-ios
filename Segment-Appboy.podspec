@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "Segment-Appboy"
-  s.version          = "2.0.1"
+  s.version          = "2.0.2"
   s.summary          = "Appboy Integration for Segment's analytics-ios library."
 
   s.description      = <<-DESC
@@ -17,11 +17,12 @@ Pod::Spec.new do |s|
   s.social_media_url = 'https://twitter.com/appboy'
 
   s.platform     = :ios, '8.0'
+  s.tvos.deployment_target = '9.0'
   s.requires_arc = true
 
   s.source_files = 'Pod/Classes/**/*'
 
   s.dependency 'Analytics', '~> 3.0'
-  s.dependency 'Appboy-iOS-SDK'
+  s.dependency 'Appboy-tvOS-SDK'
 
 end

@@ -34,10 +34,7 @@
 }
 
 - (void) saveLaunchOptions:(NSDictionary *)launchOptions {
-  NSDictionary *pushPayLoad = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
-  if (pushPayLoad != nil && pushPayLoad.count > 0) {
-    self.savedPushPayload = [pushPayLoad copy];
-  }
+    NSLog(@"NOT SUPPORTED ON TVOS: [[SEGAppboyIntegrationFactory instance] saveLaunchOptions:]");
 }
 
 - (void)saveRemoteNotification:(NSDictionary *)userInfo {

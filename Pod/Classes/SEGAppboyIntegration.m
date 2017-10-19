@@ -1,12 +1,12 @@
 #import "SEGAppboyIntegration.h"
-#if defined(__has_include) && __has_include(<Appboy_iOS_SDK/AppboyKit.h>)
-#import <Appboy_iOS_SDK/AppboyKit.h>
-#import <Appboy_iOS_SDK/ABKUser.h>
-#import <Appboy_iOS_SDK/ABKAttributionData.h>
+#if defined(__has_include) && __has_include(<AppboyTVOSKit/AppboyKit.h>)
+#import <AppboyTVOSKit/AppboyKit.h>
+#import <AppboyTVOSKit/ABKUser.h>
+#import <AppboyTVOSKit/ABKAttributionData.h>
 #else
-#import "Appboy-iOS-SDK/AppboyKit.h"
-#import "Appboy-iOS-SDK/ABKUser.h"
-#import "Appboy-iOS-SDK/ABKAttributionData.h"
+#import "AppboyTVOSKit/AppboyKit.h"
+#import "AppboyTVOSKit/ABKUser.h"
+#import "AppboyTVOSKit/ABKAttributionData.h"
 #endif
 #import <Analytics/SEGAnalyticsUtils.h>
 #import "SEGAppboyIntegrationFactory.h"
@@ -241,8 +241,7 @@
 // Appboy uses this to send push messages to the device, so forward it to Appboy.
 - (void)registeredForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
-  [[Appboy sharedInstance] registerPushToken:[NSString stringWithFormat:@"%@", deviceToken]];
-  SEGLog(@"[[Appboy sharedInstance] registerPushToken:]");
+  SEGLog(@"NOT SUPPORTED ON TVOS: [[Appboy sharedInstance] registerPushToken:]");
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification {
@@ -254,19 +253,11 @@
 }
 
 - (void)receivedRemoteNotification:(NSDictionary *)userInfo {
-  if (![self logPushIfComesInBeforeAppboyInitializedWithIdentifier:nil]) {
-    dispatch_async(dispatch_get_main_queue(), ^{
-      [[Appboy sharedInstance] registerApplication:[UIApplication sharedApplication] didReceiveRemoteNotification:userInfo];
-    });
-  }
-  SEGLog(@"[[Appboy sharedInstance] registerApplication: didReceiveRemoteNotification:]");
+  SEGLog(@"NOT SUPPORTED ON TVOS: [[Appboy sharedInstance] registerApplication: didReceiveRemoteNotification:]");
 }
 
 - (void)handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo {
-  if (![self logPushIfComesInBeforeAppboyInitializedWithIdentifier:identifier]) {
-    [[Appboy sharedInstance] getActionWithIdentifier:identifier forRemoteNotification:userInfo completionHandler:nil];
-  }
-  SEGLog(@"[[Appboy sharedInstance] getActionWithIdentifier: forRemoteNotification: completionHandler:]");
+    SEGLog(@"NOT SUPPORTED ON TVOS: [[Appboy sharedInstance] getActionWithIdentifier: forRemoteNotification: completionHandler:]");
 }
 
 - (BOOL) logPushIfComesInBeforeAppboyInitializedWithIdentifier:(NSString *)identifier {
